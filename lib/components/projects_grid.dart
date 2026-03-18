@@ -1,0 +1,640 @@
+import 'package:jaspr/dom.dart';
+import 'package:jaspr/jaspr.dart';
+
+class ProjectItem {
+  final String title;
+  final String category;
+  final String imagePath;
+
+  const ProjectItem({
+    required this.title,
+    required this.category,
+    required this.imagePath,
+  });
+}
+
+@client
+class ProjectsGridSection extends StatefulComponent {
+  const ProjectsGridSection({super.key});
+
+  @override
+  State<ProjectsGridSection> createState() => ProjectsGridSectionState();
+}
+
+class ProjectsGridSectionState extends State<ProjectsGridSection> {
+  static const int collapsedCount = 6;
+  static const List<String> chipCategories = ['All', 'Graphic Design', 'Shirt Mockups'];
+
+  String selectedCategory = 'All';
+  bool expanded = false;
+  int? lightboxIndex;
+
+  static const List<ProjectItem> allProjects = [
+    ProjectItem(
+      title: 'Brand Campaign 01',
+      category: 'Graphic Design',
+      imagePath: 'images/graphic_design/WhatsApp Image 2026-03-17 at 00.38.59.jpeg',
+    ),
+    ProjectItem(
+      title: 'Brand Campaign 02',
+      category: 'Graphic Design',
+      imagePath: 'images/graphic_design/WhatsApp Image 2026-03-17 at 00.38.59 (1).jpeg',
+    ),
+    ProjectItem(
+      title: 'Brand Campaign 03',
+      category: 'Graphic Design',
+      imagePath: 'images/graphic_design/WhatsApp Image 2026-03-17 at 00.38.59 (2).jpeg',
+    ),
+    ProjectItem(
+      title: 'Brand Campaign 04',
+      category: 'Graphic Design',
+      imagePath: 'images/graphic_design/WhatsApp Image 2026-03-17 at 00.38.59 (3).jpeg',
+    ),
+    ProjectItem(
+      title: 'Brand Campaign 05',
+      category: 'Graphic Design',
+      imagePath: 'images/graphic_design/WhatsApp Image 2026-03-17 at 00.38.59 (4).jpeg',
+    ),
+    ProjectItem(
+      title: 'Brand Campaign 06',
+      category: 'Graphic Design',
+      imagePath: 'images/graphic_design/WhatsApp Image 2026-03-17 at 00.39.00.jpeg',
+    ),
+    ProjectItem(
+      title: 'Brand Campaign 07',
+      category: 'Graphic Design',
+      imagePath: 'images/graphic_design/WhatsApp Image 2026-03-17 at 00.39.00 (1).jpeg',
+    ),
+    ProjectItem(
+      title: 'Brand Campaign 08',
+      category: 'Graphic Design',
+      imagePath: 'images/graphic_design/WhatsApp Image 2026-03-17 at 00.39.00 (2).jpeg',
+    ),
+    ProjectItem(
+      title: 'Brand Campaign 09',
+      category: 'Graphic Design',
+      imagePath: 'images/graphic_design/WhatsApp Image 2026-03-17 at 00.39.00 (3).jpeg',
+    ),
+    ProjectItem(
+      title: 'Brand Campaign 10',
+      category: 'Graphic Design',
+      imagePath: 'images/graphic_design/WhatsApp Image 2026-03-17 at 00.39.00 (4).jpeg',
+    ),
+    ProjectItem(
+      title: 'Shirt Mockup 01',
+      category: 'Shirt Mockups',
+      imagePath: 'images/t-shirt_mockups/WhatsApp Image 2026-03-17 at 08.46.44.jpeg',
+    ),
+    ProjectItem(
+      title: 'Shirt Mockup 02',
+      category: 'Shirt Mockups',
+      imagePath: 'images/t-shirt_mockups/WhatsApp Image 2026-03-17 at 08.46.44 (1).jpeg',
+    ),
+    ProjectItem(
+      title: 'Shirt Mockup 03',
+      category: 'Shirt Mockups',
+      imagePath: 'images/t-shirt_mockups/WhatsApp Image 2026-03-17 at 08.46.44 (2).jpeg',
+    ),
+    ProjectItem(
+      title: 'Shirt Mockup 04',
+      category: 'Shirt Mockups',
+      imagePath: 'images/t-shirt_mockups/WhatsApp Image 2026-03-17 at 08.46.44 (3).jpeg',
+    ),
+    ProjectItem(
+      title: 'Shirt Mockup 05',
+      category: 'Shirt Mockups',
+      imagePath: 'images/t-shirt_mockups/WhatsApp Image 2026-03-17 at 08.46.45.jpeg',
+    ),
+    ProjectItem(
+      title: 'Shirt Mockup 06',
+      category: 'Shirt Mockups',
+      imagePath: 'images/t-shirt_mockups/WhatsApp Image 2026-03-17 at 08.46.45 (1).jpeg',
+    ),
+    ProjectItem(
+      title: 'Shirt Mockup 07',
+      category: 'Shirt Mockups',
+      imagePath: 'images/t-shirt_mockups/WhatsApp Image 2026-03-17 at 08.46.45 (2).jpeg',
+    ),
+    ProjectItem(
+      title: 'Shirt Mockup 08',
+      category: 'Shirt Mockups',
+      imagePath: 'images/t-shirt_mockups/WhatsApp Image 2026-03-17 at 08.46.45 (3).jpeg',
+    ),
+    ProjectItem(
+      title: 'Shirt Mockup 09',
+      category: 'Shirt Mockups',
+      imagePath: 'images/t-shirt_mockups/WhatsApp Image 2026-03-17 at 08.46.45 (4).jpeg',
+    ),
+    ProjectItem(
+      title: 'Shirt Mockup 10',
+      category: 'Shirt Mockups',
+      imagePath: 'images/t-shirt_mockups/WhatsApp Image 2026-03-17 at 08.46.45 (5).jpeg',
+    ),
+    ProjectItem(
+      title: 'Shirt Mockup 11',
+      category: 'Shirt Mockups',
+      imagePath: 'images/t-shirt_mockups/WhatsApp Image 2026-03-17 at 08.46.46.jpeg',
+    ),
+    ProjectItem(
+      title: 'Shirt Mockup 12',
+      category: 'Shirt Mockups',
+      imagePath: 'images/t-shirt_mockups/WhatsApp Image 2026-03-17 at 08.46.46 (1).jpeg',
+    ),
+    ProjectItem(
+      title: 'Shirt Mockup 13',
+      category: 'Shirt Mockups',
+      imagePath: 'images/t-shirt_mockups/WhatsApp Image 2026-03-17 at 08.46.46 (2).jpeg',
+    ),
+    ProjectItem(
+      title: 'Shirt Mockup 14',
+      category: 'Shirt Mockups',
+      imagePath: 'images/t-shirt_mockups/WhatsApp Image 2026-03-17 at 08.46.46 (3).jpeg',
+    ),
+    ProjectItem(
+      title: 'Shirt Mockup 15',
+      category: 'Shirt Mockups',
+      imagePath: 'images/t-shirt_mockups/WhatsApp Image 2026-03-17 at 08.46.46 (4).jpeg',
+    ),
+    ProjectItem(
+      title: 'Shirt Mockup 16',
+      category: 'Shirt Mockups',
+      imagePath: 'images/t-shirt_mockups/WhatsApp Image 2026-03-17 at 08.46.46 (5).jpeg',
+    ),
+    ProjectItem(
+      title: 'Shirt Mockup 17',
+      category: 'Shirt Mockups',
+      imagePath: 'images/t-shirt_mockups/WhatsApp Image 2026-03-17 at 08.46.46 (6).jpeg',
+    ),
+  ];
+
+  List<ProjectItem> get _mixedAllProjects {
+    final byCategory = <String, List<ProjectItem>>{};
+    for (final item in allProjects) {
+      byCategory.putIfAbsent(item.category, () => <ProjectItem>[]).add(item);
+    }
+
+    final queues = [
+      List<ProjectItem>.from(byCategory['Graphic Design'] ?? const []),
+      List<ProjectItem>.from(byCategory['Shirt Mockups'] ?? const []),
+    ];
+
+    final mixed = <ProjectItem>[];
+    var added = true;
+
+    while (added) {
+      added = false;
+      for (final queue in queues) {
+        if (queue.isNotEmpty) {
+          mixed.add(queue.removeAt(0));
+          added = true;
+        }
+      }
+    }
+
+    return mixed;
+  }
+
+  Map<String, int> get _chipCounts {
+    return {
+      'All': allProjects.length,
+      'Graphic Design': allProjects.where((item) => item.category == 'Graphic Design').length,
+      'Shirt Mockups': allProjects.where((item) => item.category == 'Shirt Mockups').length,
+    };
+  }
+
+  List<ProjectItem> get _filteredProjects {
+    if (selectedCategory == 'All') {
+      return _mixedAllProjects;
+    }
+    return allProjects.where((item) => item.category == selectedCategory).toList();
+  }
+
+  List<ProjectItem> get _visibleProjects {
+    final filtered = _filteredProjects;
+    if (expanded || filtered.length <= collapsedCount) {
+      return filtered;
+    }
+    return filtered.take(collapsedCount).toList();
+  }
+
+  void _selectCategory(String category) {
+    setState(() {
+      selectedCategory = category;
+      expanded = false;
+      lightboxIndex = null;
+    });
+  }
+
+  void _toggleExpand() {
+    setState(() {
+      expanded = !expanded;
+    });
+  }
+
+  void _openLightbox(int index) {
+    setState(() {
+      lightboxIndex = index;
+    });
+  }
+
+  void _closeLightbox() {
+    setState(() {
+      lightboxIndex = null;
+    });
+  }
+
+  void _goToPrevious() {
+    final filtered = _filteredProjects;
+    if (filtered.isEmpty || lightboxIndex == null) return;
+    setState(() {
+      lightboxIndex = (lightboxIndex! - 1 + filtered.length) % filtered.length;
+    });
+  }
+
+  void _goToNext() {
+    final filtered = _filteredProjects;
+    if (filtered.isEmpty || lightboxIndex == null) return;
+    setState(() {
+      lightboxIndex = (lightboxIndex! + 1) % filtered.length;
+    });
+  }
+
+  @override
+  Component build(BuildContext context) {
+    final filtered = _filteredProjects;
+    final visible = _visibleProjects;
+    final hasMore = filtered.length > collapsedCount;
+    final current = lightboxIndex == null ? null : filtered[lightboxIndex!];
+    final chipCounts = _chipCounts;
+
+    return section(id: 'projects', classes: 'projects-section', [
+      div(classes: 'section-shell', [
+        h2([Component.text('Recent Projects')]),
+        p(classes: 'section-subtitle', [
+          Component.text('Browse all work by category. Open any design to view it in full.'),
+        ]),
+        div(classes: 'projects-controls', [
+          div(classes: 'category-chips', [
+            for (final category in chipCategories)
+              button(
+                classes: selectedCategory == category ? 'category-chip active' : 'category-chip',
+                events: {'click': (e) => _selectCategory(category)},
+                [
+                  Component.text('$category (${chipCounts[category] ?? 0})'),
+                ],
+              ),
+          ]),
+        ]),
+        div(
+          classes: 'projects-grid',
+          attributes: {
+            'style': 'display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.6rem;',
+          },
+          [
+            for (var index = 0; index < visible.length; index++)
+              article(
+                classes: 'project-card',
+                events: {'click': (e) => _openLightbox(index)},
+                [
+                  img(src: visible[index].imagePath, alt: visible[index].title, classes: 'project-image'),
+                  div(classes: 'project-meta', [
+                    h3([Component.text(visible[index].title)]),
+                    p(classes: 'project-category', [Component.text(visible[index].category)]),
+                  ]),
+                ],
+              ),
+          ],
+        ),
+        if (hasMore)
+          div(classes: 'projects-footer-toggle', [
+            button(
+              classes: 'toggle-gallery-btn',
+              events: {'click': (e) => _toggleExpand()},
+              [
+                Component.text(expanded ? 'Show Less' : 'Show More'),
+              ],
+            ),
+          ]),
+        div(classes: 'view-all-wrap', [
+          a(
+            href: 'https://wa.me/2349011085172?text=Hi%20CADE%20Design%2C%20I%20want%20to%20start%20a%20project.',
+            classes: 'view-all-btn',
+            [
+              Component.text('Start a Project'),
+            ],
+          ),
+        ]),
+        if (current != null)
+          div(classes: 'gallery-lightbox', [
+            div(classes: 'gallery-lightbox-content', [
+              img(src: current.imagePath, alt: current.title, classes: 'gallery-lightbox-image'),
+              div(classes: 'gallery-lightbox-meta', [
+                h3([Component.text(current.title)]),
+                p([Component.text(current.category)]),
+              ]),
+              button(
+                classes: 'lightbox-close-btn',
+                events: {'click': (e) => _closeLightbox()},
+                [
+                  Component.text('✕'),
+                ],
+              ),
+              button(
+                classes: 'lightbox-nav-btn prev-btn',
+                events: {'click': (e) => _goToPrevious()},
+                [
+                  Component.text('‹'),
+                ],
+              ),
+              button(
+                classes: 'lightbox-nav-btn next-btn',
+                events: {'click': (e) => _goToNext()},
+                [
+                  Component.text('›'),
+                ],
+              ),
+            ]),
+          ]),
+      ]),
+    ]);
+  }
+
+  @css
+  static List<StyleRule> get styles => [
+    css('.projects-section').styles(
+      raw: {
+        'padding': '4.2rem 0',
+        'border-top': '1px solid rgba(255, 255, 255, 0.06)',
+        'border-bottom': '1px solid rgba(255, 255, 255, 0.06)',
+      },
+    ),
+    css('.projects-section h2').styles(
+      raw: {
+        'font-size': '2.2rem',
+        'margin': '0',
+        'letter-spacing': '-0.4px',
+      },
+    ),
+    css('.section-subtitle').styles(
+      raw: {
+        'font-size': '1.2rem',
+        'color': '#9ea6b9',
+        'margin': '0.8rem 0 2rem',
+        'max-width': '54rem',
+        'line-height': '1.6',
+      },
+    ),
+    css('.projects-controls').styles(
+      raw: {
+        'display': 'flex',
+        'justify-content': 'space-between',
+        'align-items': 'flex-start',
+        'margin-bottom': '1.4rem',
+      },
+    ),
+    css('.category-chips').styles(
+      raw: {
+        'display': 'flex',
+        'flex-wrap': 'wrap',
+        'gap': '0.75rem',
+      },
+    ),
+    css('.category-chip').styles(
+      raw: {
+        'border': '1px solid rgba(255, 255, 255, 0.16)',
+        'background': 'rgba(255, 255, 255, 0.04)',
+        'color': '#dce1ee',
+        'padding': '0.5rem 0.95rem',
+        'border-radius': '999px',
+        'cursor': 'pointer',
+        'font-size': '0.95rem',
+        'white-space': 'nowrap',
+        'touch-action': 'manipulation',
+        '-webkit-tap-highlight-color': 'transparent',
+      },
+    ),
+    css('.category-chip.active').styles(
+      raw: {
+        'background': 'rgba(48, 224, 196, 0.15)',
+        'border': '1px solid rgba(48, 224, 196, 0.45)',
+        'color': '#43e2c8',
+      },
+    ),
+    css('.project-card').styles(
+      raw: {
+        'background-color': '#080c16',
+        'border': '1px solid rgba(255, 255, 255, 0.09)',
+        'border-radius': '1rem',
+        'overflow': 'hidden',
+        'transition': 'transform 0.2s ease, border-color 0.2s ease',
+        'cursor': 'zoom-in',
+      },
+    ),
+    css('.project-card:hover').styles(
+      raw: {
+        'transform': 'translateY(-2px)',
+        'border-color': 'rgba(51, 222, 191, 0.45)',
+      },
+    ),
+    css('.project-image').styles(
+      raw: {
+        'width': '100%',
+        'aspect-ratio': '4 / 3',
+        'display': 'block',
+        'object-fit': 'cover',
+      },
+    ),
+    css('.project-meta').styles(
+      raw: {
+        'padding': '1rem 1rem 1.1rem',
+      },
+    ),
+    css('.project-meta h3').styles(
+      raw: {
+        'margin': '0 0 0.35rem',
+        'font-size': '1.2rem',
+        'line-height': '1.25',
+        'font-weight': '600',
+      },
+    ),
+    css('.project-category').styles(
+      raw: {
+        'margin': '0',
+        'color': '#38dcc0',
+        'font-size': '0.95rem',
+      },
+    ),
+    css('.view-all-wrap').styles(
+      raw: {
+        'display': 'flex',
+        'justify-content': 'center',
+        'margin-top': '2.2rem',
+      },
+    ),
+    css('.projects-footer-toggle').styles(
+      raw: {
+        'display': 'flex',
+        'justify-content': 'center',
+        'margin-top': '1.5rem',
+      },
+    ),
+    css('.toggle-gallery-btn').styles(
+      raw: {
+        'padding': '0.75rem 1.4rem',
+        'border-radius': '0.7rem',
+        'border': '1px solid rgba(255, 255, 255, 0.2)',
+        'background': 'rgba(255, 255, 255, 0.04)',
+        'color': '#e7ecf9',
+        'font-weight': '500',
+        'cursor': 'pointer',
+      },
+    ),
+    css('.gallery-lightbox').styles(
+      raw: {
+        'position': 'fixed',
+        'inset': '0',
+        'background': 'rgba(2, 4, 10, 0.9)',
+        'display': 'flex',
+        'justify-content': 'center',
+        'align-items': 'center',
+        'z-index': '200',
+        'padding': '1rem',
+      },
+    ),
+    css('.gallery-lightbox-content').styles(
+      raw: {
+        'position': 'relative',
+        'width': 'min(980px, 96vw)',
+        'max-height': '92vh',
+        'background': '#070b14',
+        'border': '1px solid rgba(255, 255, 255, 0.12)',
+        'border-radius': '1rem',
+        'padding': '1rem',
+        'display': 'flex',
+        'flex-direction': 'column',
+        'gap': '0.9rem',
+      },
+    ),
+    css('.gallery-lightbox-image').styles(
+      raw: {
+        'width': '100%',
+        'max-height': '75vh',
+        'object-fit': 'contain',
+        'border-radius': '0.7rem',
+      },
+    ),
+    css('.gallery-lightbox-meta h3').styles(
+      raw: {
+        'margin': '0',
+      },
+    ),
+    css('.gallery-lightbox-meta p').styles(
+      raw: {
+        'margin': '0.2rem 0 0',
+        'color': '#43e2c8',
+      },
+    ),
+    css('.lightbox-close-btn').styles(
+      raw: {
+        'position': 'absolute',
+        'top': '0.5rem',
+        'right': '0.5rem',
+        'width': '2.2rem',
+        'height': '2.2rem',
+        'border-radius': '999px',
+        'border': 'none',
+        'background': 'rgba(0, 0, 0, 0.55)',
+        'color': '#ffffff',
+        'cursor': 'pointer',
+        'z-index': '10',
+      },
+    ),
+    css('.lightbox-nav-btn').styles(
+      raw: {
+        'position': 'absolute',
+        'top': '50%',
+        'transform': 'translateY(-50%)',
+        'width': '2.4rem',
+        'height': '2.4rem',
+        'border-radius': '999px',
+        'border': 'none',
+        'background': 'rgba(0, 0, 0, 0.55)',
+        'color': '#ffffff',
+        'font-size': '1.3rem',
+        'cursor': 'pointer',
+        'display': 'flex',
+        'align-items': 'center',
+        'justify-content': 'center',
+        'z-index': '10',
+      },
+    ),
+    css('.prev-btn').styles(
+      raw: {
+        'left': '0.5rem',
+      },
+    ),
+    css('.next-btn').styles(
+      raw: {
+        'right': '0.5rem',
+      },
+    ),
+    css('.view-all-btn').styles(
+      raw: {
+        'display': 'inline-flex',
+        'align-items': 'center',
+        'justify-content': 'center',
+        'padding': '0.95rem 2rem',
+        'border-radius': '0.8rem',
+        'background-color': '#1ecab0',
+        'color': '#081115',
+        'font-size': '1.15rem',
+        'font-weight': '600',
+        'transition': 'transform 0.2s ease',
+      },
+    ),
+    css('.view-all-btn:hover').styles(
+      raw: {
+        'transform': 'translateY(-1px)',
+      },
+    ),
+    css('@media (max-width: 768px)', [
+      css('.projects-section').styles(
+        raw: {
+          'padding-top': '2.6rem',
+          'padding-bottom': '2.8rem',
+        },
+      ),
+      css('.project-meta h3').styles(
+        raw: {
+          'font-size': '1rem',
+        },
+      ),
+      css('.category-chips').styles(
+        raw: {
+          'flex-wrap': 'nowrap',
+          'overflow-x': 'auto',
+          'padding-bottom': '0.5rem',
+          'width': '100%',
+          '-webkit-overflow-scrolling': 'touch',
+        },
+      ),
+      css('.category-chips::-webkit-scrollbar').styles(
+        raw: {
+          'display': 'none',
+        },
+      ),
+      css('.view-all-btn').styles(
+        raw: {
+          'width': '100%',
+        },
+      ),
+      css('.lightbox-nav-btn').styles(
+        raw: {
+          'width': '2rem',
+          'height': '2rem',
+          'font-size': '1.1rem',
+        },
+      ),
+    ]),
+  ];
+}
