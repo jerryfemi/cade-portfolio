@@ -121,6 +121,17 @@ class PortfolioState extends State<Portfolio> {
           'width': 'min(1160px, calc(100% - 1rem))',
         },
       ),
+      css('body, html').styles(
+        raw: {
+          'overflow-x': 'hidden',
+        },
+      ),
+      css('.portfolio-page').styles(
+        raw: {
+          'overflow-x': 'hidden',
+          'max-width': '100vw',
+        },
+      ),
 
       css('.projects-section, .about-section, .contact-section').styles(
         raw: {

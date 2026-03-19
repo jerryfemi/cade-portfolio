@@ -15,7 +15,7 @@ class DesignerNavbarState extends State<DesignerNavbar> {
     return header(classes: 'site-header', [
       div(classes: 'section-shell nav-shell', [
         a(href: '#top', classes: 'brand-link', [
-          Component.text('CADE Design'),
+          Component.text('CADE Graphics'),
         ]),
         nav(classes: 'main-nav', [
           a(href: '#top', [Component.text('Home')]),
@@ -46,6 +46,7 @@ class DesignerNavbarState extends State<DesignerNavbar> {
         'backdrop-filter': 'blur(8px)',
         'background': 'rgba(5, 7, 13, 0.85)',
         'border-bottom': '1px solid rgba(255, 255, 255, 0.06)',
+        'overflow-x': 'hidden',
       },
     ),
     css('.nav-shell').styles(
@@ -53,8 +54,10 @@ class DesignerNavbarState extends State<DesignerNavbar> {
         'display': 'flex',
         'align-items': 'center',
         'justify-content': 'space-between',
-        'padding': '1rem 0',
+        'padding': '1rem 1.5rem',
         'gap': '1.25rem',
+        'width': 'min(1160px, calc(100% - 3rem))',
+        'margin': '0 auto',
       },
     ),
     css('.brand-link').styles(
@@ -102,6 +105,7 @@ class DesignerNavbarState extends State<DesignerNavbar> {
         'border-radius': '0.85rem',
         'font-weight': '600',
         'transition': 'transform 0.2s ease, box-shadow 0.2s ease',
+        'white-space': 'nowrap',
       },
     ),
     css('.hire-btn:hover').styles(
@@ -110,22 +114,26 @@ class DesignerNavbarState extends State<DesignerNavbar> {
         'box-shadow': '0 10px 22px rgba(48, 224, 196, 0.25)',
       },
     ),
-    // --- Responsive Media Queries ---
     css('@media (max-width: 900px)', [
-      css('.main-nav').styles(
-        raw: {
-          'gap': '1.1rem',
-        },
-      ),
+      css('.main-nav').styles(raw: {'gap': '1.1rem'}),
     ]),
     css('@media (max-width: 768px)', [
-      // This completely hides the text links on phones
       css('.main-nav').styles(raw: {'display': 'none !important'}),
-
-      // These shrink the logo and button so they fit side-by-side
+      css('.nav-shell').styles(
+        raw: {
+          'gap': '0.5rem',
+          'width': 'min(1160px, calc(100% - 1rem))',
+          'padding': '0.75rem 0.5rem',
+        },
+      ),
       css('.brand-link').styles(raw: {'font-size': '1.3rem'}),
-      css('.hire-btn').styles(raw: {'padding': '0.5rem 0.9rem', 'font-size': '0.9rem'}),
-      css('.nav-shell').styles(raw: {'gap': '0.5rem'}),
+      css('.hire-btn').styles(
+        raw: {
+          'padding': '0.5rem 0.9rem',
+          'font-size': '0.9rem',
+          'white-space': 'nowrap',
+        },
+      ),
     ]),
   ];
 }

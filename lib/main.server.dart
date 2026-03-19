@@ -19,10 +19,19 @@ void main() {
           href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap',
           rel: 'stylesheet',
         ),
-        RawText(
+        raw(
           '<style>'
+          'html, body { overflow-x: hidden; max-width: 100vw; }'
           '@media (max-width: 768px) {'
           '  .projects-grid { grid-template-columns: 1fr !important; gap: 1rem !important; }'
+          '}'
+          '</style>',
+        ),
+        raw(
+          '<style>'
+          '@media (max-width: 900px) {'
+          '  .main-nav { display: none !important; }'
+          '  body { overflow-x: hidden !important; }'
           '}'
           '</style>',
         ),
