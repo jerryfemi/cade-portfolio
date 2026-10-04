@@ -11,23 +11,23 @@ class HeroSection extends StatelessComponent {
       div(classes: 'section-shell hero-grid', [
         div(classes: 'hero-left', [
           div(classes: 'status-badge', [
-            Component.text('Available for freelance work'),
+            .text('Available for freelance work'),
           ]),
           h1(classes: 'hero-title', [
-            Component.text('Creative'),
-            span(classes: 'accent-line', [Component.text('Designer')]),
+            .text('Creative'),
+            span(classes: 'accent-line', [.text('Designer')]),
           ]),
           p(classes: 'hero-copy', [
-            Component.text(
+            .text(
               'Crafting beautiful and functional digital experiences through thoughtful design and user-centered solutions.',
             ),
           ]),
           div(classes: 'hero-actions', [
             a(href: '#projects', classes: 'btn-primary', [
-              Component.text('View Projects'),
+              .text('View Projects'),
             ]),
             a(href: '#contact', classes: 'btn-ghost', [
-              Component.text('Contact Me'),
+              .text('Contact Me'),
             ]),
           ]),
         ]),
