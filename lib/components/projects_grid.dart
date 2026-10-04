@@ -121,9 +121,9 @@ class ProjectsGridSectionState extends State<ProjectsGridSection> {
 
     return section(id: 'projects', classes: 'projects-section', [
       div(classes: 'section-shell', [
-        h2([Component.text('Recent Projects')]),
+        h2([.text('Recent Projects')]),
         p(classes: 'section-subtitle', [
-          Component.text('Browse all work by category. Open any design to view it in full.'),
+          .text('Browse all work by category. Open any design to view it in full.'),
         ]),
         div(classes: 'projects-controls', [
           div(classes: 'category-chips', [
@@ -132,7 +132,7 @@ class ProjectsGridSectionState extends State<ProjectsGridSection> {
                 classes: selectedCategory == category ? 'category-chip active' : 'category-chip',
                 events: {'click': (e) => _selectCategory(category)},
                 [
-                  Component.text('$category (${chipCounts[category] ?? 0})'),
+                  .text('$category (${chipCounts[category] ?? 0})'),
                 ],
               ),
           ]),
@@ -150,8 +150,8 @@ class ProjectsGridSectionState extends State<ProjectsGridSection> {
                 [
                   img(src: visible[index].imagePath, alt: visible[index].title, classes: 'project-image'),
                   div(classes: 'project-meta', [
-                    h3([Component.text(visible[index].title)]),
-                    p(classes: 'project-category', [Component.text(visible[index].category)]),
+                    h3([.text(visible[index].title)]),
+                    p(classes: 'project-category', [.text(visible[index].category)]),
                   ]),
                 ],
               ),
@@ -163,7 +163,7 @@ class ProjectsGridSectionState extends State<ProjectsGridSection> {
               classes: 'toggle-gallery-btn',
               events: {'click': (e) => _toggleExpand()},
               [
-                Component.text(expanded ? 'Show Less' : 'Show More'),
+                .text(expanded ? 'Show Less' : 'Show More'),
               ],
             ),
           ]),
@@ -172,7 +172,7 @@ class ProjectsGridSectionState extends State<ProjectsGridSection> {
             href: 'https://wa.me/2349011085172?text=Hi%20CADE%20Design%2C%20I%20want%20to%20start%20a%20project.',
             classes: 'view-all-btn',
             [
-              Component.text('Start a Project'),
+              .text('Start a Project'),
             ],
           ),
         ]),
@@ -181,28 +181,28 @@ class ProjectsGridSectionState extends State<ProjectsGridSection> {
             div(classes: 'gallery-lightbox-content', [
               img(src: current.imagePath, alt: current.title, classes: 'gallery-lightbox-image'),
               div(classes: 'gallery-lightbox-meta', [
-                h3([Component.text(current.title)]),
-                p([Component.text(current.category)]),
+                h3([.text(current.title)]),
+                p([.text(current.category)]),
               ]),
               button(
                 classes: 'lightbox-close-btn',
                 events: {'click': (e) => _closeLightbox()},
                 [
-                  Component.text('✕'),
+                  .text('✕'),
                 ],
               ),
               button(
                 classes: 'lightbox-nav-btn prev-btn',
                 events: {'click': (e) => _goToPrevious()},
                 [
-                  Component.text('‹'),
+                  .text('‹'),
                 ],
               ),
               button(
                 classes: 'lightbox-nav-btn next-btn',
                 events: {'click': (e) => _goToNext()},
                 [
-                  Component.text('›'),
+                  .text('›'),
                 ],
               ),
             ]),
