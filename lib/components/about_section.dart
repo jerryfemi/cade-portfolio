@@ -71,7 +71,7 @@ class AboutSection extends StatelessComponent {
       raw: {
         'font-size': '1rem',
         'line-height': '1.55',
-        'color': '#a7aec1',
+        'color': '#888888',
         'margin': '1rem 0 0',
       },
     ),
@@ -80,11 +80,12 @@ class AboutSection extends StatelessComponent {
         'display': 'flex',
         'align-items': 'center',
         'gap': '1rem',
-        'padding': '1rem',
-        'background': 'rgba(255, 255, 255, 0.04)',
-        'border': '1px solid rgba(255, 255, 255, 0.1)',
-        'border-radius': '1rem',
-        'margin-bottom': '1.2rem',
+        'padding': '1.25rem',
+        'background': 'rgba(255, 255, 255, 0.03)',
+        'border': '1px solid rgba(255, 255, 255, 0.08)',
+        'border-radius': '12px',
+        'margin-bottom': '1.5rem',
+        'backdrop-filter': 'blur(10px)',
       },
     ),
     css('.about-profile-image').styles(
@@ -93,7 +94,14 @@ class AboutSection extends StatelessComponent {
         'height': '84px',
         'object-fit': 'cover',
         'border-radius': '999px',
-        'border': '2px solid rgba(48, 224, 196, 0.5)',
+        'border': '1px solid rgba(255, 255, 255, 0.2)',
+        'filter': 'grayscale(100%)',
+        'transition': 'filter 0.3s ease',
+      },
+    ),
+    css('.about-profile-image:hover').styles(
+      raw: {
+        'filter': 'grayscale(0%)',
       },
     ),
     css('.about-profile-meta').styles(
@@ -122,9 +130,9 @@ class AboutSection extends StatelessComponent {
         'width': 'fit-content',
         'padding': '0.3rem 0.7rem',
         'border-radius': '999px',
-        'background': 'rgba(48, 224, 196, 0.14)',
-        'border': '1px solid rgba(48, 224, 196, 0.28)',
-        'color': '#43e2c8',
+        'background': 'rgba(0, 112, 243, 0.1)',
+        'border': '1px solid rgba(0, 112, 243, 0.3)',
+        'color': '#0070F3',
         'font-size': '0.9rem',
       },
     ),
@@ -132,7 +140,7 @@ class AboutSection extends StatelessComponent {
       raw: {
         'margin': '0 0 0.8rem',
         'font-size': '1.85rem',
-        'color': '#21d0b4',
+        'color': '#EDEDED',
       },
     ),
     css('.skills-wrap').styles(
@@ -147,9 +155,10 @@ class AboutSection extends StatelessComponent {
       raw: {
         'padding': '0.45rem 0.9rem',
         'border-radius': '999px',
-        'background-color': 'rgba(255, 255, 255, 0.1)',
-        'color': '#f2f5fb',
-        'font-size': '1rem',
+        'background-color': 'rgba(255, 255, 255, 0.05)',
+        'border': '1px solid rgba(255, 255, 255, 0.1)',
+        'color': '#EDEDED',
+        'font-size': '0.95rem',
       },
     ),
     css('.experience-title').styles(
