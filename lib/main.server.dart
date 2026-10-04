@@ -12,13 +12,18 @@ void main() {
       title: 'Cade Portfolio',
       meta: {
         'viewport': 'width=device-width, initial-scale=1.0',
-        'theme-color': '#05070d',
+        'theme-color': '#0A0A0A',
         'description': 'Portfolio of CADE Graphics, a Graphic Designer and Brand Specialist.',
         'og:title': 'CADE Graphics Portfolio',
         'og:description': 'Visual identities, UI, and brand experiences.',
         'og:type': 'website',
       },
       head: [
+        link(
+          href: 'images/photo.jpg',
+          rel: 'icon',
+          attributes: {'type': 'image/jpeg'},
+        ),
         link(
           href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap',
           rel: 'stylesheet',
