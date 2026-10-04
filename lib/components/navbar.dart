@@ -31,27 +31,27 @@ class DesignerNavbarState extends State<DesignerNavbar> {
     return header(classes: 'site-header', [
       div(classes: 'section-shell nav-shell', [
         a(href: '#top', classes: 'brand-link', [
-          Component.text('CADE Graphics'),
+          .text('CADE Graphics'),
         ]),
         nav(classes: isMenuOpen ? 'main-nav open' : 'main-nav', [
-          a(href: '#top', events: {'click': (e) => closeMenu()}, [Component.text('Home')]),
-          a(href: '#projects', events: {'click': (e) => closeMenu()}, [Component.text('Projects')]),
-          a(href: '#about', events: {'click': (e) => closeMenu()}, [Component.text('About')]),
-          a(href: '#contact', events: {'click': (e) => closeMenu()}, [Component.text('Contact')]),
+          a(href: '#top', events: {'click': (e) => closeMenu()}, [.text('Home')]),
+          a(href: '#projects', events: {'click': (e) => closeMenu()}, [.text('Projects')]),
+          a(href: '#about', events: {'click': (e) => closeMenu()}, [.text('About')]),
+          a(href: '#contact', events: {'click': (e) => closeMenu()}, [.text('Contact')]),
         ]),
         div(classes: 'nav-actions', [
           button(
             classes: 'menu-toggle-btn',
             events: {'click': (e) => toggleMenu()},
             [
-              Component.text(isMenuOpen ? '✕' : '☰'),
+              .text(isMenuOpen ? '✕' : '☰'),
             ],
           ),
           a(
             href: 'https://wa.me/2349011085172?text=Hi%20CADE%20Design%2C%20I%20want%20to%20hire%20you.',
             classes: 'hire-btn',
             [
-              Component.text('Hire Me'),
+              .text('Hire Me'),
             ],
           ),
         ]),
