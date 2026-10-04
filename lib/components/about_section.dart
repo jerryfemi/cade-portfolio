@@ -11,7 +11,7 @@ class AboutSection extends StatelessComponent {
       div(classes: 'section-shell about-grid', [
         div(classes: 'about-left', [
           div(classes: 'about-profile-card', [
-            img(src: 'images/photo.png', alt: 'Cade, graphic designer', classes: 'about-profile-image'),
+            img(src: 'images/photo.jpg', alt: 'Cade, graphic designer', classes: 'about-profile-image'),
             div(classes: 'about-profile-meta', [
               h3(classes: 'about-name', [Component.text('CADE Graphics')]),
               p(classes: 'about-role', [Component.text('Graphic Designer • Brand & Social Media Specialist')]),

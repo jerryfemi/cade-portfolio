@@ -23,12 +23,18 @@ class AppState extends State<App> {
   static List<StyleRule> get styles => [
     css('html, body').styles(
       raw: {
-        'background-color': '#05070d',
-        'color': '#ffffff',
-        'font-family': '"Inter", sans-serif',
+        'background-color': '#0A0A0A',
+        'color': '#EDEDED',
+        'font-family': '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
         'margin': '0',
         'padding': '0',
         'scroll-behavior': 'smooth',
+      },
+    ),
+    css('::selection').styles(
+      raw: {
+        'background-color': '#0070F3',
+        'color': '#FFFFFF',
       },
     ),
     css('.app-container').styles(
@@ -40,8 +46,14 @@ class AppState extends State<App> {
     ),
     css('a').styles(
       raw: {
-        'color': '#ffffff',
+        'color': '#EDEDED',
         'text-decoration': 'none',
+        'transition': 'color 0.2s ease',
+      },
+    ),
+    css('a:hover').styles(
+      raw: {
+        'color': '#0070F3',
       },
     ),
     css('img').styles(

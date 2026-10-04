@@ -13,6 +13,10 @@ void main() {
       meta: {
         'viewport': 'width=device-width, initial-scale=1.0',
         'theme-color': '#05070d',
+        'description': 'Portfolio of CADE Graphics, a Graphic Designer and Brand Specialist.',
+        'og:title': 'CADE Graphics Portfolio',
+        'og:description': 'Visual identities, UI, and brand experiences.',
+        'og:type': 'website',
       },
       head: [
         link(

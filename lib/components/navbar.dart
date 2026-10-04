@@ -10,6 +10,22 @@ class DesignerNavbar extends StatefulComponent {
 }
 
 class DesignerNavbarState extends State<DesignerNavbar> {
+  bool isMenuOpen = false;
+
+  void toggleMenu() {
+    setState(() {
+      isMenuOpen = !isMenuOpen;
+    });
+  }
+
+  void closeMenu() {
+    if (isMenuOpen) {
+      setState(() {
+        isMenuOpen = false;
+      });
+    }
+  }
+
   @override
   Component build(BuildContext context) {
     return header(classes: 'site-header', [
@@ -17,13 +33,20 @@ class DesignerNavbarState extends State<DesignerNavbar> {
         a(href: '#top', classes: 'brand-link', [
           Component.text('CADE Graphics'),
         ]),
-        nav(classes: 'main-nav', [
-          a(href: '#top', [Component.text('Home')]),
-          a(href: '#projects', [Component.text('Projects')]),
-          a(href: '#about', [Component.text('About')]),
-          a(href: '#contact', [Component.text('Contact')]),
+        nav(classes: isMenuOpen ? 'main-nav open' : 'main-nav', [
+          a(href: '#top', events: {'click': (e) => closeMenu()}, [Component.text('Home')]),
+          a(href: '#projects', events: {'click': (e) => closeMenu()}, [Component.text('Projects')]),
+          a(href: '#about', events: {'click': (e) => closeMenu()}, [Component.text('About')]),
+          a(href: '#contact', events: {'click': (e) => closeMenu()}, [Component.text('Contact')]),
         ]),
         div(classes: 'nav-actions', [
+          button(
+            classes: 'menu-toggle-btn',
+            events: {'click': (e) => toggleMenu()},
+            [
+              Component.text(isMenuOpen ? '✕' : '☰'),
+            ],
+          ),
           a(
             href: 'https://wa.me/2349011085172?text=Hi%20CADE%20Design%2C%20I%20want%20to%20hire%20you.',
             classes: 'hire-btn',
@@ -97,6 +120,16 @@ class DesignerNavbarState extends State<DesignerNavbar> {
         'z-index': '105',
       },
     ),
+    css('.menu-toggle-btn').styles(
+      raw: {
+        'display': 'none',
+        'background': 'none',
+        'border': 'none',
+        'color': '#fff',
+        'font-size': '1.8rem',
+        'cursor': 'pointer',
+      },
+    ),
     css('.hire-btn').styles(
       raw: {
         'background-color': '#30e0c4',
@@ -118,7 +151,21 @@ class DesignerNavbarState extends State<DesignerNavbar> {
       css('.main-nav').styles(raw: {'gap': '1.1rem'}),
     ]),
     css('@media (max-width: 768px)', [
-      css('.main-nav').styles(raw: {'display': 'none !important'}),
+      css('.menu-toggle-btn').styles(raw: {'display': 'block'}),
+      css('.main-nav').styles(raw: {
+        'display': 'none',
+        'position': 'absolute',
+        'top': '100%',
+        'left': '0',
+        'right': '0',
+        'background': 'rgba(5, 7, 13, 0.95)',
+        'flex-direction': 'column',
+        'padding': '1rem 0',
+        'border-bottom': '1px solid rgba(255, 255, 255, 0.06)',
+      }),
+      css('.main-nav.open').styles(raw: {
+        'display': 'flex !important',
+      }),
       css('.nav-shell').styles(
         raw: {
           'gap': '0.5rem',
