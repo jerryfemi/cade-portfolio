@@ -140,7 +140,7 @@ class ProjectsGridSectionState extends State<ProjectsGridSection> {
         div(
           classes: 'projects-grid',
           attributes: {
-            'style': 'display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.6rem;',
+            'style': 'display:grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.6rem;',
           },
           [
             for (var index = 0; index < visible.length; index++)
@@ -253,39 +253,48 @@ class ProjectsGridSectionState extends State<ProjectsGridSection> {
     ),
     css('.category-chip').styles(
       raw: {
-        'border': '1px solid rgba(255, 255, 255, 0.16)',
-        'background': 'rgba(255, 255, 255, 0.04)',
-        'color': '#dce1ee',
-        'padding': '0.5rem 0.95rem',
+        'border': '1px solid rgba(255, 255, 255, 0.1)',
+        'background': 'rgba(255, 255, 255, 0.03)',
+        'color': '#888888',
+        'padding': '0.5rem 1rem',
         'border-radius': '999px',
         'cursor': 'pointer',
         'font-size': '0.95rem',
         'white-space': 'nowrap',
         'touch-action': 'manipulation',
         '-webkit-tap-highlight-color': 'transparent',
+        'transition': 'all 0.2s ease',
+      },
+    ),
+    css('.category-chip:hover').styles(
+      raw: {
+        'color': '#EDEDED',
+        'background': 'rgba(255, 255, 255, 0.08)',
       },
     ),
     css('.category-chip.active').styles(
       raw: {
-        'background': 'rgba(48, 224, 196, 0.15)',
-        'border': '1px solid rgba(48, 224, 196, 0.45)',
-        'color': '#43e2c8',
+        'background': 'rgba(0, 112, 243, 0.15)',
+        'border': '1px solid rgba(0, 112, 243, 0.5)',
+        'color': '#0070F3',
       },
     ),
     css('.project-card').styles(
       raw: {
-        'background-color': '#080c16',
-        'border': '1px solid rgba(255, 255, 255, 0.09)',
-        'border-radius': '1rem',
+        'background-color': 'rgba(255, 255, 255, 0.03)',
+        'border': '1px solid rgba(255, 255, 255, 0.08)',
+        'border-radius': '12px',
         'overflow': 'hidden',
-        'transition': 'transform 0.2s ease, border-color 0.2s ease',
+        'backdrop-filter': 'blur(10px)',
+        'transition': 'all 0.3s ease',
         'cursor': 'zoom-in',
       },
     ),
     css('.project-card:hover').styles(
       raw: {
-        'transform': 'translateY(-2px)',
-        'border-color': 'rgba(51, 222, 191, 0.45)',
+        'transform': 'translateY(-4px)',
+        'border-color': 'rgba(255, 255, 255, 0.2)',
+        'box-shadow': '0 8px 30px rgba(0, 0, 0, 0.4)',
       },
     ),
     css('.project-image').styles(
@@ -298,22 +307,23 @@ class ProjectsGridSectionState extends State<ProjectsGridSection> {
     ),
     css('.project-meta').styles(
       raw: {
-        'padding': '1rem 1rem 1.1rem',
+        'padding': '1.25rem',
       },
     ),
     css('.project-meta h3').styles(
       raw: {
-        'margin': '0 0 0.35rem',
-        'font-size': '1.2rem',
-        'line-height': '1.25',
+        'margin': '0 0 0.25rem',
+        'font-size': '1.15rem',
+        'line-height': '1.3',
         'font-weight': '600',
+        'color': '#EDEDED',
       },
     ),
     css('.project-category').styles(
       raw: {
         'margin': '0',
-        'color': '#38dcc0',
-        'font-size': '0.95rem',
+        'color': '#888888',
+        'font-size': '0.9rem',
       },
     ),
     css('.view-all-wrap').styles(
@@ -436,17 +446,17 @@ class ProjectsGridSectionState extends State<ProjectsGridSection> {
         'align-items': 'center',
         'justify-content': 'center',
         'padding': '0.95rem 2rem',
-        'border-radius': '0.8rem',
-        'background-color': '#1ecab0',
-        'color': '#081115',
-        'font-size': '1.15rem',
+        'border-radius': '8px',
+        'background-color': '#EDEDED',
+        'color': '#0A0A0A',
+        'font-size': '1rem',
         'font-weight': '600',
-        'transition': 'transform 0.2s ease',
+        'transition': 'background-color 0.2s ease',
       },
     ),
     css('.view-all-btn:hover').styles(
       raw: {
-        'transform': 'translateY(-1px)',
+        'background-color': '#FFFFFF',
       },
     ),
     css('@media (max-width: 768px)', [
