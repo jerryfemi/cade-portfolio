@@ -24,9 +24,9 @@ class PortfolioState extends State<Portfolio> {
       const AboutSection(),
       section(id: 'contact', classes: 'contact-section', [
         div(classes: 'section-shell contact-wrap', [
-          h2([Component.text('Let’s Build Something Great')]),
+          h2([.text('Let’s Build Something Great')]),
           p([
-            Component.text(
+            .text(
               'Need a standout visual identity, campaign assets, or a fresh digital look? Let’s collaborate.',
             ),
           ]),
@@ -34,15 +34,15 @@ class PortfolioState extends State<Portfolio> {
             href: 'https://wa.me/2349011085172?text=Hi%20CADE%20Design%2C%20I%20want%20to%20start%20a%20project.',
             classes: 'btn-primary contact-btn',
             [
-              Component.text('Start a Project'),
+              .text('Start a Project'),
             ],
           ),
           div(classes: 'contact-links', [
             a(href: 'https://wa.me/2349011085172', classes: 'contact-link', [
-              Component.text('WhatsApp'),
+              .text('WhatsApp'),
             ]),
             a(href: 'https://www.instagram.com/cade_gfx/', classes: 'contact-link', [
-              Component.text('Instagram'),
+              .text('Instagram'),
             ]),
           ]),
         ]),
