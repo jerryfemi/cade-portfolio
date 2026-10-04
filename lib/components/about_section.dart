@@ -13,25 +13,25 @@ class AboutSection extends StatelessComponent {
           div(classes: 'about-profile-card', [
             img(src: 'images/photo.jpg', alt: 'Cade, graphic designer', classes: 'about-profile-image'),
             div(classes: 'about-profile-meta', [
-              h3(classes: 'about-name', [Component.text('CADE Graphics')]),
-              p(classes: 'about-role', [Component.text('Graphic Designer • Brand & Social Media Specialist')]),
-              span(classes: 'experience-chip', [Component.text('12+ Years Experience')]),
+              h3(classes: 'about-name', [.text('CADE Graphics')]),
+              p(classes: 'about-role', [.text('Graphic Designer • Brand & Social Media Specialist')]),
+              span(classes: 'experience-chip', [.text('12+ Years Experience')]),
             ]),
           ]),
-          h2([Component.text('About Me')]),
+          h2([.text('About Me')]),
           p([
-            Component.text(
+            .text(
               'I am a graphic designer focused on creating compelling visual identities, user interfaces, and brand experiences that feel timeless and clear.',
             ),
           ]),
           p([
-            Component.text(
+            .text(
               'Every project blends creativity with strategy, helping brands communicate with confidence across print and digital channels.',
             ),
           ]),
         ]),
         div(classes: 'about-right', [
-          h3(classes: 'subheading', [Component.text('Skills')]),
+          h3(classes: 'subheading', [.text('Skills')]),
           div(classes: 'skills-wrap', [
             for (final skill in [
               'Branding',
@@ -40,11 +40,11 @@ class AboutSection extends StatelessComponent {
               'Figma',
               'Adobe Suite',
             ])
-              span(classes: 'skill-pill', [Component.text(skill)]),
+              span(classes: 'skill-pill', [.text(skill)]),
           ]),
-          h3(classes: 'subheading experience-title', [Component.text('Experience')]),
+          h3(classes: 'subheading experience-title', [.text('Experience')]),
           p([
-            Component.text(
+            .text(
               '12+ years designing for startups, agencies, and growing businesses, with a strong focus on social media and visual marketing assets.',
             ),
           ]),
